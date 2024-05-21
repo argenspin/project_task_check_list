@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="project_task_form_inherit" model="ir.ui.view">
+        <field name="name">project.task.form.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_checklist_documents" type="object" class="oe_stat_button" icon="fa-file">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="checklist_documents_count" widget="statinfo" nolabel="1"/>
+                        </span>
+                        <span class="o_stat_text text-nowrap">Checklist Documents</span>
+                    </div>
+                </button>
+            </xpath>
+            <xpath expr='//notebook' position="inside">
+                <page string="Checklist">
+                    <group>
+                        <group>
+                            <field name="task_checklist_ids" widget="many2many_checkboxes" domain="[('project_task_id','=',id)]"/>
+
+                        </group>
+                        <group>
+                            <field name="checklist_progress" widget="percentpie"/>
+                        </group>
+                    </group>
+
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
